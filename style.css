@@ -1,0 +1,84 @@
+/* Body & Container */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #6b8e23;
+    background-image:
+        linear-gradient(45deg, #556b2f 25%, transparent 25%),
+        linear-gradient(-45deg, #556b2f 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #556b2f 75%),
+        linear-gradient(-45deg, transparent 75%, #556b2f 75%);
+    background-size: 40px 40px;
+    background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+    z-index: -1;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+    padding-top: 50px;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+/* Menu */
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+input {
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: none;
+    width: 200px;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-5px);
+}
+
+#seeSubscribers {
+    background-color: red;
+    color: white;
+}
+
+#subscriberList {
+    margin-top: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 220px;
+    text-align: left;
+    background: rgba(0,0,0,0.3);
+    padding: 10px;
+    border-radius: 5px;
+}
