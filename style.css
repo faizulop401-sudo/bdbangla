@@ -1,0 +1,108 @@
+/* General Reset */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body, html {
+    width: 100%;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+    color: #fff;
+}
+
+/* Background */
+.bg-img {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    z-index:-1;
+    filter: brightness(0.6);
+}
+
+/* Hero / Welcome */
+.hero {
+    height: 100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:2rem;
+    text-align:center;
+}
+
+/* Menu */
+.menu {
+    padding:40px 20px;
+    text-align:center;
+    animation: fadeIn 1s ease forwards;
+}
+
+.menu h1 {
+    font-size:2.5rem;
+    color:#ff0000;
+    margin-bottom:20px;
+}
+
+/* Inputs */
+.input-group input {
+    padding:10px;
+    margin:5px;
+    border-radius:5px;
+    border:none;
+    font-size:1rem;
+}
+
+.input-group button {
+    padding:10px 20px;
+    margin:5px;
+    border:none;
+    border-radius:5px;
+    background:#00ff00;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.input-group button:hover {
+    background:#00cc00;
+}
+
+/* Red Button */
+.red-btn {
+    padding:10px 25px;
+    margin-top:20px;
+    background:#ff0000;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.red-btn:hover {
+    background:#ff5555;
+}
+
+/* Subscriber List */
+.sub-list {
+    margin-top:20px;
+    max-width:500px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:left;
+    background: rgba(0,0,0,0.5);
+    padding:10px;
+    border-radius:5px;
+}
+
+.sub-list p {
+    padding:5px 0;
+    border-bottom:1px solid #fff;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
