@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@BDbangla-111 1k Special</title>
+<style>
+/* Import Minecraft-style font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Press Start 2P', monospace;
+    color: #fff;
+    text-align: center;
+    background: url('YOUR_BACKGROUND_URL_HERE') no-repeat center center fixed;
+    background-size: cover;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-size: 2em;
+    color: #00ff00;
+    text-shadow: 2px 2px #000;
+    margin-top: 50px;
+}
+
+/* Splash words */
+.splash-word {
+    display: block;
+    font-size: 2em;
+    opacity: 0;
+    margin: 5px 0;
+}
+
+/* Menu styling */
+.menu, .menu2, .fansList {
+    display: none;
+    margin-top: 30px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-family: monospace;
+    font-size: 14px;
+    margin: 20px 0;
+    border: 3px solid #00ff00;
+    border-radius: 5px;
+    width: 250px;
+    text-align: center;
+}
+
+button {
+    padding: 15px 25px;
+    margin: 10px;
+    font-size: 14px;
+    font-family: monospace;
+    background: #333;
+    color: #fff;
+    border: 3px solid #00ff00;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    position: relative;
+}
+
+button:hover {
+    background: #00ff00;
+    color: #000;
+    top: -5px;
+}
+
+/* Fans list */
+.fansList ul {
+    list-style: none;
+    padding: 0;
+}
+
+.fansList li {
+    background: #222;
+    border: 2px solid #00ff00;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+</style>
+</head>
+<body>
+
+<h1 id="splash"></h1>
+
+<!-- Menu 1 -->
+<div class="menu">
+    <input type="text" id="fanName" placeholder="Enter fan name">
+    <br>
+    <button id="btnSubmit">Submit</button>
+    <button id="btnView">See Fans Name</button>
+</div>
+
+<!-- Menu 2 / Saved names -->
+<div class="menu2 fansList">
+    <h2>Saved Fan Names</h2>
+    <ul id="nameList"></ul>
+    <button id="btnBack">Back</button>
+</div>
+
+<script>
+// SPLASH animation
+const splashText = "WELCOME FANS";
+const splashContainer = document.getElementById('splash');
+let i = 0;
+
+function showNextLetter() {
+    if (i < splashText.length) {
+        const span = document.createElement('span');
+        span.textContent = splashText[i];
+        span.className = 'splash-word';
+        splashContainer.appendChild(span);
+        setTimeout(() => { span.style.opacity = 1; }, 100);
+        i++;
+        setTimeout(showNextLetter, 300); // show next letter
+    } else {
+        // After splash finished, show menu
+        setTimeout(() => {
+            document.querySelector('.menu').style.display = 'block';
+            splashContainer.style.display = 'none';
+        }, 500);
+    }
+}
+showNextLetter();
+
+// FAN NAME LOGIC
+const fanInput = document.getElementById('fanName');
+const btnSubmit = document.getElementById('btnSubmit');
+const btnView = document.getElementById('btnView');
+const menu2 = document.querySelector('.menu2');
+const nameList = document.getElementById('nameList');
+const btnBack = document.getElementById('btnBack');
+
+let fans = JSON.parse(localStorage.getItem('fans')) || [];
+
+// Submit name
+btnSubmit.addEventListener('click', () => {
+    const name = fanInput.value.trim();
+    if (name) {
+        fans.push(name);
+        localStorage.setItem('fans', JSON.stringify(fans));
+        alert(`Saved: ${name}`);
+        fanInput.value = '';
+    } else {
+        alert('Enter a name first!');
+    }
+});
+
+// View saved names
+btnView.addEventListener('click', () => {
+    document.querySelector('.menu').style.display = 'none';
+    menu2.style.display = 'block';
+    nameList.innerHTML = '';
+    const savedFans = JSON.parse(localStorage.getItem('fans')) || [];
+    savedFans.forEach(name => {
+        const li = document.createElement('li');
+        li.textContent = name;
+        nameList.appendChild(li);
+    });
+});
+
+// Back button
+btnBack.addEventListener('click', () => {
+    menu2.style.display = 'none';
+    document.querySelector('.menu').style.display = 'block';
+});
+</script>
+
+</body>
+  </html>
