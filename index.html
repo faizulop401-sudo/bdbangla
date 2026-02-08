@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@BDbangla-111 Fan Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff; /* light blue background */
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+    }
+
+    .welcome {
+      color: green;
+    }
+
+    .username {
+      color: red;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1em;
+      width: 250px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #savedNames {
+      margin-top: 30px;
+      display: none;
+    }
+
+    #savedNames ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #savedNames li {
+      background-color: #eee;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>
+    <span class="welcome">Welcome</span> 
+    <span class="username">@BDbangla-111</span> 
+    Website
+  </h1>
+
+  <div>
+    <input type="text" id="fanName" placeholder="Enter fan name">
+  </div>
+
+  <div>
+    <button id="btnAdd">Add Fan Name</button>
+    <button id="btnSubmit">Submit</button>
+    <button id="btnView">View Saved Names</button>
+  </div>
+
+  <div id="savedNames">
+    <h2>Saved Fan Names</h2>
+    <ul id="nameList"></ul>
+  </div>
+
+  <script>
+    const fanInput = document.getElementById('fanName');
+    const btnAdd = document.getElementById('btnAdd');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const btnView = document.getElementById('btnView');
+    const savedDiv = document.getElementById('savedNames');
+    const nameList = document.getElementById('nameList');
+
+    let fans = [];
+
+    // Add name to temporary list
+    btnAdd.addEventListener('click', () => {
+      const name = fanInput.value.trim();
+      if (name) {
+        fans.push(name);
+        alert(`Added fan name: ${name}`);
+        fanInput.value = '';
+      } else {
+        alert('Please enter a name first!');
+      }
+    });
+
+    // Submit: save to localStorage
+    btnSubmit.addEventListener('click', () => {
+      if (fans.length === 0) {
+        alert('No names to submit!');
+        return;
+      }
+      localStorage.setItem('fans', JSON.stringify(fans));
+      alert('Names submitted successfully!');
+    });
+
+    // View saved names
+    btnView.addEventListener('click', () => {
+      savedDiv.style.display = 'block';
+      const savedFans = JSON.parse(localStorage.getItem('fans')) || [];
+      nameList.innerHTML = '';
+      savedFans.forEach(name => {
+        const li = document.createElement('li');
+        li.textContent = name;
+        nameList.appendChild(li);
+      });
+    });
+  </script>
+
+</body>
+</html>
